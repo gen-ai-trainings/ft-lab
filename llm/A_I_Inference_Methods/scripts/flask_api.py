@@ -111,10 +111,8 @@ def generate_stream():
     thread.start()
 
     def f():
-        completion = ""
         for r in streamer:
-            yield r[len(completion) :]
-            completion = r
+            yield r
 
     return Response(stream_with_context(f()), mimetype="text/event-stream")
 
